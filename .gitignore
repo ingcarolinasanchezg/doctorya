@@ -25,4 +25,19 @@
 hs_err_pid*
 replay_pid*
 .DS_Store
+
+
+# Gradle
+.gradle/
+build/
+
+# Maven / Serenity
 target/
+
+# IDE
+.idea/
+*.iml
+out/
+
+# Serenity reports
+**/site/serenity/
