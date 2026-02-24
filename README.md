@@ -123,6 +123,20 @@ zsh: permission denied
 ## Ejecutar:
 chmod +x mvnw
 
+## ⚠️ Requisitos previos Mac
+
+Si tienes problemas al correr los tests con el error 
+`Unrecognized VM option 'MaxPermSize'`, ejecuta:
+```bash
+export MAVEN_OPTS="-Xmx1024m"
+```
+
+O para hacerlo permanente:
+```bash
+echo 'export MAVEN_OPTS="-Xmx1024m"' >> ~/.zshrc
+source ~/.zshrc
+```
+
 ### 📘 Documentación Swagger
 Disponible automáticamente en:  
 `http://localhost:8080/swagger-ui.html`
