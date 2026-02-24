@@ -117,6 +117,11 @@ java -jar target/doctorya-app.jar
 ```bash
 mvn test
 ```
+## Si aparece:
+zsh: permission denied
+
+## Ejecutar:
+chmod +x mvnw
 
 ### 📘 Documentación Swagger
 Disponible automáticamente en:  
