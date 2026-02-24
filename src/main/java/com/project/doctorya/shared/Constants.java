@@ -4,6 +4,7 @@ public class Constants {
     public static String error = "error";
     public static String bodyInvalid = "Body Invalid";
     public static String patientNotFound = "Patient not found";
+    public static String doctorNotFound = "Doctor not found";
     public static String physicianNotFound = "Physician not found";
     public static String appointmentNotFound = "Appointment not found";
     public static String appointmentExists = "Appointment exists";
