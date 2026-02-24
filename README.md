@@ -72,6 +72,36 @@ src/
 
 ---
 
+## 🚀 Primeros pasos para estudiantes
+
+### 1️⃣ Haz fork del repositorio
+Haz clic en el botón **Fork** en la parte superior derecha de este repositorio.
+
+### 2️⃣ Clona tu fork
+```bash
+git clone https://github.com/tu-usuario/doctorya
+cd doctorya
+```
+
+### 3️⃣ Configura las variables de entorno
+Copia el archivo `.env.example` y renómbralo a `.env`:
+```bash
+cp .env.example .env
+```
+Luego abre el archivo `.env` y llena tus propias credenciales de PostgreSQL:
+```
+HOST_DB=127.0.0.1
+PORT_DB=5432
+POSTGRES_DB=doctorya
+USERNAME_DB=postgres
+PASSWORD_DB=tu_contraseña
+```
+### 4️⃣ Corre los tests
+```bash
+./mvnw test
+```
+---
+
 ## 🧪 Ejecución y Pruebas
 
 ### ▶️ Ejecución Local
