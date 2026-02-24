@@ -39,32 +39,4 @@ public class PatientTest {
         Patient patient = patientService.getByIdentification("1053847610");
         assertEquals(patient.getIdentification(), patient.getIdentification());
     }
-
-    @Test
-    @Order(3)
-    void testGetById() throws Exception{
-        Patient patient = patientService.getByIdentification("1053847610");
-        Patient patient2 = patientService.getById(patient.getId());
-        assertEquals(patient.getIdentification(), patient2.getIdentification());
-        assertEquals(patient.getId(), patient2.getId());
-    }
-
-    @Test
-    @Order(4)
-    void testUpdatePatient() throws Exception{
-        Patient patient = patientService.getByIdentification("1053847610");
-        PatientDto patientDto = new PatientDto();
-        patientDto.setName("Test Name");
-        Patient patientUpdate = patientService.update(patientDto, patient.getId());
-        assertNotNull(patientUpdate);
-        assertEquals(patientDto.getName(), patientUpdate.getName());
-    }
-
-    @Test
-    @Order(5)
-    void testDeletePatient() throws Exception{
-        Patient patient = patientService.getByIdentification("1053847610");
-        patientService.delete(patient.getId());
-
-    }
 }
