@@ -51,12 +51,13 @@ public class PatientService {
     }
 
     public Patient getById(UUID id) {
-        Optional<PatientEntity> patientEntity = patientRepository.findById(id);
-        if(patientEntity.isEmpty()){
-            throw new EntityNotExistsException(Constants.patientNotFound);
-        }
-        return mapper.map(patientEntity.get(), Patient.class);
-    }
+    PatientEntity patientEntity = patientRepository.findById(id)
+            .orElseThrow(() -> 
+                new EntityNotExistsException(Constants.patientNotFound)
+            );
+
+    return mapper.map(patientEntity, Patient.class);
+}
     
     public Patient getByIdentification(String identification) {
         Optional<PatientEntity> patientEntity = patientRepository.findByIdentification(identification);
