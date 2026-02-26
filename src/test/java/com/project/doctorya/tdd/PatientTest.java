@@ -1,4 +1,4 @@
-package com.project.doctorya;
+package com.project.doctorya.tdd;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
