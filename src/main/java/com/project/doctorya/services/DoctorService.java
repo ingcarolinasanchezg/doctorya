@@ -2,7 +2,6 @@ package com.project.doctorya.services;
 
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
@@ -17,6 +16,7 @@ import com.project.doctorya.models.Doctor;
 import com.project.doctorya.repositories.IDoctorRepository;
 import com.project.doctorya.shared.Constants;
 
+@SuppressWarnings("all")
 @Service
 public class DoctorService {
 
@@ -27,20 +27,18 @@ public class DoctorService {
     private ModelMapper mapper;
 
     public Doctor create(DoctorDto doctorDto) {
-        DoctorEntity doctorEntity = mapper.map(doctorDto, DoctorEntity.class);
-        DoctorEntity response = doctorRepository.save(doctorEntity);
-        return mapper.map(response, Doctor.class);
+        DoctorEntity entity = mapper.map(doctorDto, DoctorEntity.class);
+        DoctorEntity saved = doctorRepository.save(entity);
+        return mapper.map(saved, Doctor.class);
     }
 
     public Doctor update(DoctorDto doctorDto, UUID id) {
-        Optional<DoctorEntity> entity = doctorRepository.findById(id);
-        if (entity.isEmpty()) {
-            throw new EntityNotExistsException(Constants.doctorNotFound);
-        }
-        DoctorEntity doctorExist = entity.get();
+        DoctorEntity doctorExist = doctorRepository.findById(id)
+                .orElseThrow(() -> new EntityNotExistsException(Constants.doctorNotFound));
+
         mapper.map(doctorDto, doctorExist);
-        DoctorEntity response = doctorRepository.save(doctorExist);
-        return mapper.map(response, Doctor.class);
+        DoctorEntity updated = doctorRepository.save(doctorExist);
+        return mapper.map(updated, Doctor.class);
     }
 
     public List<Doctor> getAll() {
@@ -50,26 +48,23 @@ public class DoctorService {
     }
 
     public Doctor getById(UUID id) {
-        Optional<DoctorEntity> doctorEntity = doctorRepository.findById(id);
-        if (doctorEntity.isEmpty()) {
-            throw new EntityNotExistsException(Constants.doctorNotFound);
-        }
-        return mapper.map(doctorEntity.get(), Doctor.class);
+        DoctorEntity doctorExist = doctorRepository.findById(id)
+                .orElseThrow(() -> new EntityNotExistsException(Constants.doctorNotFound));
+
+        return mapper.map(doctorExist, Doctor.class);
     }
 
     public Doctor getByIdentification(String identification) {
-        Optional<DoctorEntity> doctorEntity = doctorRepository.findByIdentification(identification);
-        if (doctorEntity.isEmpty()) {
-            throw new EntityNotExistsException(Constants.doctorNotFound);
-        }
-        return mapper.map(doctorEntity.get(), Doctor.class);
+        DoctorEntity doctorExist = doctorRepository.findByIdentification(identification)
+                .orElseThrow(() -> new EntityNotExistsException(Constants.doctorNotFound));
+
+        return mapper.map(doctorExist, Doctor.class);
     }
 
     public void delete(UUID id) {
-        Optional<DoctorEntity> doctor = doctorRepository.findById(id);
-        if (doctor.isEmpty()) {
-            throw new EntityNotExistsException(Constants.doctorNotFound);
-        }
-        doctorRepository.delete(doctor.get());
+        DoctorEntity doctorExist = doctorRepository.findById(id)
+                .orElseThrow(() -> new EntityNotExistsException(Constants.doctorNotFound));
+
+        doctorRepository.delete(doctorExist);
     }
 }

@@ -2,22 +2,20 @@ package com.project.doctorya.tdd;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 import com.project.doctorya.dtos.DoctorDto;
 import com.project.doctorya.models.Doctor;
 import com.project.doctorya.services.DoctorService;
 
 @SpringBootTest
-@ActiveProfiles("test")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
 public class DoctorTest {
 
     @Autowired
@@ -80,3 +78,6 @@ public class DoctorTest {
         doctorService.delete(doctor.getId());
     }
 }
+
+
+

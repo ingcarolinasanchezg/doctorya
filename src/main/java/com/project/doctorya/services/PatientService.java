@@ -2,7 +2,6 @@ package com.project.doctorya.services;
 
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
@@ -17,6 +16,7 @@ import com.project.doctorya.models.Patient;
 import com.project.doctorya.repositories.IPatientRepository;
 import com.project.doctorya.shared.Constants;
 
+@SuppressWarnings("all")
 @Service
 public class PatientService {
 
@@ -29,16 +29,13 @@ public class PatientService {
     public Patient create(PatientDto patientDto) {
         PatientEntity patientEntity = mapper.map(patientDto, PatientEntity.class);
         PatientEntity response = patientRepository.save(patientEntity);
-        Patient patient = mapper.map(response, Patient.class);
-        return patient;
+        return mapper.map(response, Patient.class);
     }
 
     public Patient update(PatientDto patientDto, UUID id) {
-        Optional<PatientEntity> entity = patientRepository.findById(id);
-        if(entity.isEmpty()){
-            throw new EntityNotExistsException(Constants.patientNotFound);
-        }
-        PatientEntity patientExist = entity.get();
+        PatientEntity patientExist = patientRepository.findById(id)
+                .orElseThrow(() -> new EntityNotExistsException(Constants.patientNotFound));
+
         mapper.map(patientDto, patientExist);
         PatientEntity response = patientRepository.save(patientExist);
         return mapper.map(response, Patient.class);
@@ -51,26 +48,23 @@ public class PatientService {
     }
 
     public Patient getById(UUID id) {
-        Optional<PatientEntity> patientEntity = patientRepository.findById(id);
-        if(patientEntity.isEmpty()){
-            throw new EntityNotExistsException(Constants.patientNotFound);
-        }
-        return mapper.map(patientEntity.get(), Patient.class);
+        PatientEntity patientExist = patientRepository.findById(id)
+                .orElseThrow(() -> new EntityNotExistsException(Constants.patientNotFound));
+
+        return mapper.map(patientExist, Patient.class);
     }
-    
+
     public Patient getByIdentification(String identification) {
-        Optional<PatientEntity> patientEntity = patientRepository.findByIdentification(identification);
-        if(patientEntity.isEmpty()){
-            throw new EntityNotExistsException(Constants.patientNotFound);
-        }
-        return mapper.map(patientEntity.get(), Patient.class);
+        PatientEntity patientExist = patientRepository.findByIdentification(identification)
+                .orElseThrow(() -> new EntityNotExistsException(Constants.patientNotFound));
+
+        return mapper.map(patientExist, Patient.class);
     }
 
     public void delete(UUID id) {
-        Optional<PatientEntity> patient = patientRepository.findById(id);
-        if(patient.isEmpty()){
-            throw new EntityNotExistsException(Constants.patientNotFound);
-        }
-        patientRepository.delete(patient.get());
+        PatientEntity patientExist = patientRepository.findById(id)
+                .orElseThrow(() -> new EntityNotExistsException(Constants.patientNotFound));
+
+        patientRepository.delete(patientExist);
     }
 }
