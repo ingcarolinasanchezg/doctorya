@@ -10,7 +10,7 @@ import com.project.doctorya.models.Appointment;
 import com.project.doctorya.services.AppointmentService;
 
 @RestController
-@RequestMapping("/appointments")
+@RequestMapping("/appointment")
 public class AppointmentController {
 
     @Autowired
