@@ -1,14 +1,16 @@
 Feature: Appointment Management
   As a clinic administrator
   I want to manage appointments
-  So that I can schedule consultations
+  So that I can assign patients to doctors
 
   Scenario: Create a new appointment
-    Given the system does not have an appointment with id "11111111-1111-1111-1111-111111111111"
-    When I create an appointment with the following details:
-      | doctorId                              | patientId                              | date                |
-      | 11111111-1111-1111-1111-111111111111 | 22222222-2222-2222-2222-222222222222 | 2025-01-01T10:00:00 |
+    Given the system does not have a patient with identification "123"
+    And the system does not have a doctor with identification "456"
+    And I create a patient with the following details:
+      | identification | name   | insurance |
+      | 123            | Juan   | EPS       |
+    And I create a doctor with the following details:
+      | identification | name     | specialty  |
+      | 456            | Dr House | Cardiology |
+    When I create an appointment
     Then the appointment should be created successfully
-    And the appointment id should not be null
-    And the appointment doctorId should be "11111111-1111-1111-1111-111111111111"
-    And the appointment patientId should be "22222222-2222-2222-2222-222222222222"

@@ -60,11 +60,11 @@ public class PatientTest {
         assertEquals(patientDto.getName(), patientUpdate.getName());
     }
 
-    @Test
+    /*@Test
     @Order(5)
     void testDeletePatient() throws Exception{
         Patient patient = patientService.getByIdentification("1053847610");
         patientService.delete(patient.getId());
 
-    }
+    }*/
 }

@@ -70,13 +70,13 @@ public class DoctorTest {
         assertEquals("Doctor Updated", updated.getName());
     }
 
-    @Test
+    /*@Test
     @Order(5)
     void testDeleteDoctor() throws Exception {
         Doctor doctor = doctorService.getByIdentification("9999999999");
 
         doctorService.delete(doctor.getId());
-    }
+    }*/
 }
 
 

@@ -10,5 +10,5 @@ import net.serenitybdd.cucumber.CucumberWithSerenity;
     glue = {"com.project.doctorya.bdd.stepdefinitions"},
     plugin = {"pretty"}
 )
-public class AppoinmentCucumberTest {
+public class AppointmentCucumberTest {
 }
