@@ -50,7 +50,6 @@ Sistema backend para la gestión de citas médicas entre pacientes y doctores. E
 | Testing           | JUnit                             |
 | Contenedores      | Docker, Podman, Minikube (K8s)    |
 
----
 
 ## 🗂️ Arquitectura del Proyecto
 
